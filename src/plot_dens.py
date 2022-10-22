@@ -69,11 +69,11 @@ def plot_dens(Xlist, B_num, dt_now):
     for j in range(50000):
         x=np.random.uniform(-5, 5)
         y=np.random.uniform(-5, 5)
-        print("pilist = ", pilist)
-        sn=(max(pilist))
-        print("sn = ", sn)
-        #棄却サンプリング
-        pi_sampling=np.random.uniform(0, sn)
+        #print("pilist = ", pilist)
+        si = (max(pilist))
+        print("si = ", si)
+        #rejection sampling
+        pi_sampling=np.random.uniform(0, si)
         if pi_sampling <= pi(x,y,i+1,B_num):
             #pi_samplelist.append(pi_sam)
             #ylist.append(y)
@@ -109,13 +109,16 @@ def plot_original_dens(B_num, dt_now):
 
     pn_samplelist=[]
     ylist=[]
-    for i in range(50000):
+    for i in range(5):
         x=np.random.uniform(-5, 5)
         y=np.random.uniform(-5, 5)
+        #print("pnlist = ", pnlist)
         sn=(max(pnlist))
-        pn_sam=np.random.uniform(0, sn)
-        if pn_sam <= pn(x,y,B_num):
-            pn_samplelist.append(pn_sam)
+        print("sn = ", sn)
+        #rejection sampling
+        pn_sampling = np.random.uniform(0, sn)
+        if pn_sampling <= pn(x,y,B_num):
+            pn_samplelist.append(pn_sampling)
             ylist.append([x,y])
 
     fig = plt.figure()
@@ -144,7 +147,7 @@ if __name__ == '__main__':
     Xn=ylist[0]
     e_1=v(Xn[0],Xn[1],B_num)/np.linalg.norm(v(Xn[0],Xn[1],B_num), ord=2)
     e=[e_1]
-    #正規直交基底の集合
+    #orthonormal basis
     Xlist=[Xn]
     print("X_1=",Xn)
     for i in range(T):
