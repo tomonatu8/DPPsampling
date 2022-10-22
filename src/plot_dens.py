@@ -71,7 +71,7 @@ def plot_dens(Xlist, B_num, dt_now):
         y=np.random.uniform(-5, 5)
         #print("pilist = ", pilist)
         si = (max(pilist))
-        print("si = ", si)
+        #print("si = ", si)
         #rejection sampling
         pi_sampling=np.random.uniform(0, si)
         if pi_sampling <= pi(x,y,i+1,B_num):
@@ -109,12 +109,12 @@ def plot_original_dens(B_num, dt_now):
 
     pn_samplelist=[]
     ylist=[]
-    for i in range(5):
+    for i in range(50000):
         x=np.random.uniform(-5, 5)
         y=np.random.uniform(-5, 5)
         #print("pnlist = ", pnlist)
         sn=(max(pnlist))
-        print("sn = ", sn)
+        #print("sn = ", sn)
         #rejection sampling
         pn_sampling = np.random.uniform(0, sn)
         if pn_sampling <= pn(x,y,B_num):
@@ -146,6 +146,7 @@ if __name__ == '__main__':
 
     Xn=ylist[0]
     e_1=v(Xn[0],Xn[1],B_num)/np.linalg.norm(v(Xn[0],Xn[1],B_num), ord=2)
+    print("e_1 = ",e_1)
     e=[e_1]
     #orthonormal basis
     Xlist=[Xn]
